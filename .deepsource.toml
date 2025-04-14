@@ -1,4 +1,9 @@
 version = 1
 
+exclude_patterns = [
+  "**/*",
+  "!src/Dto/**"
+]
+
 [[analyzers]]
 name = "php"
