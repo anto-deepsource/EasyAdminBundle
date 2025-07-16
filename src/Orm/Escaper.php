@@ -49,7 +49,7 @@ class Escaper
         // tokens that are not valid identifiers (e.g. T_OPEN_PARENTHESIS, T_EQUALS) are < 100
         // see https://www.doctrine-project.org/projects/doctrine-lexer/en/3.1/dql-parser.html
         if ($type < 100) {
-            throw new \RuntimeException(sprintf('The "%s" string is not a valid identifier in Doctrine queries.', $string));
+            throw new \RuntimeException(\sprintf('The "%s" string is not a valid identifier in Doctrine queries.', $string));
         }
 
         // tokens that are keywords (e.g. T_AND, T_JOIN, T_ORDER) are >= 200

@@ -35,7 +35,7 @@ final class TextFilter implements FilterInterface
         $parameterName = $filterDataDto->getParameterName();
         $value = $filterDataDto->getValue();
 
-        $queryBuilder->andWhere(sprintf('%s.%s %s :%s', $alias, $property, $comparison, $parameterName))
+        $queryBuilder->andWhere(\sprintf('%s.%s %s :%s', $alias, $property, $comparison, $parameterName))
             ->setParameter($parameterName, $value);
     }
 }

@@ -92,7 +92,7 @@ final class ChoiceConfigurator implements FieldConfiguratorInterface
         $field->setFormTypeOptionIfNotSet('expanded', $isExpanded);
 
         if ($isExpanded && ChoiceField::WIDGET_AUTOCOMPLETE === $field->getCustomOption(ChoiceField::OPTION_WIDGET)) {
-            throw new \InvalidArgumentException(sprintf('The "%s" choice field wants to be displayed as an autocomplete widget and as an expanded list of choices at the same time, which is not possible. Use the renderExpanded() and renderAsNativeWidget() methods to change one of those options.', $field->getProperty()));
+            throw new \InvalidArgumentException(\sprintf('The "%s" choice field wants to be displayed as an autocomplete widget and as an expanded list of choices at the same time, which is not possible. Use the renderExpanded() and renderAsNativeWidget() methods to change one of those options.', $field->getProperty()));
         }
 
         if (null === $field->getCustomOption(ChoiceField::OPTION_WIDGET)) {
@@ -137,7 +137,7 @@ final class ChoiceConfigurator implements FieldConfiguratorInterface
                 // We check if $allChoicesAreEnums is true for enum's and choices array is generated using ->name as index
                 $selectedValue instanceof \BackedEnum => $allChoicesAreEnums && $choicesSupportTranslatableInterface ? $selectedValue->name : $selectedValue->value,
                 $selectedValue instanceof \UnitEnum => $selectedValue->name,
-                default => $selectedValue
+                default => $selectedValue,
             };
             if (null !== $selectedLabel = $flippedChoices[$selectedValue] ?? null) {
                 if ($selectedLabel instanceof TranslatableInterface) {
@@ -185,7 +185,7 @@ final class ChoiceConfigurator implements FieldConfiguratorInterface
         } elseif (\is_callable($badgeSelector)) {
             $badgeType = $badgeSelector($value, $field);
             if (!\in_array($badgeType, ChoiceField::VALID_BADGE_TYPES, true)) {
-                throw new \RuntimeException(sprintf('The value returned by the callable passed to the "renderAsBadges()" method must be one of the following valid badge types: "%s" ("%s" given).', implode(', ', ChoiceField::VALID_BADGE_TYPES), $badgeType));
+                throw new \RuntimeException(\sprintf('The value returned by the callable passed to the "renderAsBadges()" method must be one of the following valid badge types: "%s" ("%s" given).', implode(', ', ChoiceField::VALID_BADGE_TYPES), $badgeType));
             }
         }
 

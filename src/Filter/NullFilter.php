@@ -58,6 +58,6 @@ final class NullFilter implements FilterInterface
     {
         $comparison = self::CHOICE_VALUE_NULL === $filterDataDto->getValue() ? 'IS' : 'IS NOT';
         $queryBuilder
-            ->andWhere(sprintf('%s.%s %s NULL', $filterDataDto->getEntityAlias(), $filterDataDto->getProperty(), $comparison));
+            ->andWhere(\sprintf('%s.%s %s NULL', $filterDataDto->getEntityAlias(), $filterDataDto->getProperty(), $comparison));
     }
 }

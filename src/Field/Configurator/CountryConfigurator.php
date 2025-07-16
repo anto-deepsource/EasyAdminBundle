@@ -71,7 +71,7 @@ final class CountryConfigurator implements FieldConfiguratorInterface
                 $alpha2CountryCode = $usesAlpha3Codes ? Countries::getAlpha2Code($countryCode) : $countryCode;
                 $countryNames[$alpha2CountryCode] = $usesAlpha3Codes ? Countries::getAlpha3Name($countryCode, $displayLocale) : Countries::getName($countryCode, $displayLocale);
             } catch (MissingResourceException) {
-                $countryNames['UNKNOWN'] = sprintf('Unknown "%s" country code', $countryCode);
+                $countryNames['UNKNOWN'] = \sprintf('Unknown "%s" country code', $countryCode);
             }
         }
 
@@ -94,8 +94,8 @@ final class CountryConfigurator implements FieldConfiguratorInterface
             }
 
             $countryCodeAlpha2 = $usesAlpha3Codes ? Countries::getAlpha2Code($countryCode) : $countryCode;
-            $flagImagePath = $this->assetPackage->getUrl(sprintf('images/flags/%s.svg', $countryCodeAlpha2));
-            $choiceKey = sprintf('<div class="country-name-flag"><img src="%s" class="country-flag" loading="lazy" alt="%s"> <span>%s</span></div>', $flagImagePath, $countryName, $countryName);
+            $flagImagePath = $this->assetPackage->getUrl(\sprintf('images/flags/%s.svg', $countryCodeAlpha2));
+            $choiceKey = \sprintf('<div class="country-name-flag"><img src="%s" class="country-flag" loading="lazy" alt="%s"> <span>%s</span></div>', $flagImagePath, $countryName, $countryName);
 
             $choices[$choiceKey] = $countryCode;
         }

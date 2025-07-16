@@ -109,26 +109,26 @@ final class EntityRepository implements EntityRepositoryInterface
                     || ($propertyConfig['is_integer'] && $isIntegerQueryTerm)
                     || ($propertyConfig['is_numeric'] && $isNumericQueryTerm)
                 ) {
-                    $parameterName = sprintf('query_for_numbers_%d', $queryTermIndex);
-                    $queryTermConditions->add(sprintf('%s.%s = :%s', $entityName, $propertyConfig['property_name'], $parameterName));
+                    $parameterName = \sprintf('query_for_numbers_%d', $queryTermIndex);
+                    $queryTermConditions->add(\sprintf('%s.%s = :%s', $entityName, $propertyConfig['property_name'], $parameterName));
                     $queryBuilder->setParameter($parameterName, $dqlParameters['numeric_query']);
                 } elseif ($propertyConfig['is_guid'] && $isUuidQueryTerm) {
-                    $parameterName = sprintf('query_for_uuids_%d', $queryTermIndex);
-                    $queryTermConditions->add(sprintf('%s.%s = :%s', $entityName, $propertyConfig['property_name'], $parameterName));
+                    $parameterName = \sprintf('query_for_uuids_%d', $queryTermIndex);
+                    $queryTermConditions->add(\sprintf('%s.%s = :%s', $entityName, $propertyConfig['property_name'], $parameterName));
                     $queryBuilder->setParameter($parameterName, $dqlParameters['uuid_query'], 'uuid' === $propertyConfig['property_data_type'] ? 'uuid' : null);
                 } elseif ($propertyConfig['is_ulid'] && $isUlidQueryTerm) {
-                    $parameterName = sprintf('query_for_ulids_%d', $queryTermIndex);
-                    $queryTermConditions->add(sprintf('%s.%s = :%s', $entityName, $propertyConfig['property_name'], $parameterName));
+                    $parameterName = \sprintf('query_for_ulids_%d', $queryTermIndex);
+                    $queryTermConditions->add(\sprintf('%s.%s = :%s', $entityName, $propertyConfig['property_name'], $parameterName));
                     $queryBuilder->setParameter($parameterName, $dqlParameters['uuid_query'], 'ulid');
                 } elseif ($propertyConfig['is_text'] || $propertyConfig['is_integer']) {
-                    $parameterName = sprintf('query_for_text_%d', $queryTermIndex);
+                    $parameterName = \sprintf('query_for_text_%d', $queryTermIndex);
                     // concatenating an empty string is needed to avoid issues on PostgreSQL databases (https://github.com/EasyCorp/EasyAdminBundle/issues/6290)
-                    $queryTermConditions->add(sprintf('LOWER(CONCAT(%s.%s, \'\')) LIKE :%s', $entityName, $propertyConfig['property_name'], $parameterName));
+                    $queryTermConditions->add(\sprintf('LOWER(CONCAT(%s.%s, \'\')) LIKE :%s', $entityName, $propertyConfig['property_name'], $parameterName));
                     $queryBuilder->setParameter($parameterName, $dqlParameters['text_query']);
                 } elseif ($propertyConfig['is_json'] && !$isPostgreSql) {
                     // neither LOWER() nor LIKE() are supported for JSON columns by all PostgreSQL installations
-                    $parameterName = sprintf('query_for_text_%d', $queryTermIndex);
-                    $queryTermConditions->add(sprintf('LOWER(%s.%s) LIKE :%s', $entityName, $propertyConfig['property_name'], $parameterName));
+                    $parameterName = \sprintf('query_for_text_%d', $queryTermIndex);
+                    $queryTermConditions->add(\sprintf('LOWER(%s.%s) LIKE :%s', $entityName, $propertyConfig['property_name'], $parameterName));
                     $queryBuilder->setParameter($parameterName, $dqlParameters['text_query']);
                 }
             }
@@ -168,17 +168,17 @@ final class EntityRepository implements EntityRepositoryInterface
                             $countQueryBuilder
                                 ->select($queryBuilder->expr()->count('subQueryEntity'))
                                 ->from($entityDto->getFqcn(), 'subQueryEntity')
-                                ->join(sprintf('subQueryEntity.%s', $sortProperty), 'relatedEntity')
+                                ->join(\sprintf('subQueryEntity.%s', $sortProperty), 'relatedEntity')
                                 ->where('subQueryEntity = entity');
                         } else {
                             // one-to-many relation
                             $countQueryBuilder
                                 ->select($queryBuilder->expr()->count('subQueryEntity'))
                                 ->from($metadata->get('targetEntity'), 'subQueryEntity')
-                                ->where(sprintf('subQueryEntity.%s = entity', $metadata->get('mappedBy')));
+                                ->where(\sprintf('subQueryEntity.%s = entity', $metadata->get('mappedBy')));
                         }
 
-                        $queryBuilder->addSelect(sprintf('(%s) as HIDDEN sub_query_sort', $countQueryBuilder->getDQL()));
+                        $queryBuilder->addSelect(\sprintf('(%s) as HIDDEN sub_query_sort', $countQueryBuilder->getDQL()));
                         $queryBuilder->addOrderBy('sub_query_sort', $sortOrder);
                         $queryBuilder->addOrderBy('entity.'.$entityDto->getPrimaryKeyName(), $sortOrder);
                     } else {
@@ -252,7 +252,7 @@ final class EntityRepository implements EntityRepositoryInterface
                 $numAssociatedProperties = \count($associatedProperties);
 
                 if (1 === $numAssociatedProperties) {
-                    throw new \InvalidArgumentException(sprintf('The "%s" property included in the setSearchFields() method is not a valid search field. When using associated properties in search, you must also define the exact field used in the search (e.g. \'%s.id\', \'%s.name\', etc.)', $propertyName, $propertyName, $propertyName));
+                    throw new \InvalidArgumentException(\sprintf('The "%s" property included in the setSearchFields() method is not a valid search field. When using associated properties in search, you must also define the exact field used in the search (e.g. \'%s.id\', \'%s.name\', etc.)', $propertyName, $propertyName, $propertyName));
                 }
 
                 $originalPropertyName = $associatedProperties[0];

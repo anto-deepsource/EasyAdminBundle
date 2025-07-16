@@ -96,7 +96,7 @@ class FileUploadType extends AbstractType implements DataMapperInterface
 
             $index = 1;
             $pathInfo = pathinfo($filename);
-            while (file_exists($filename = sprintf('%s/%s_%d.%s', $pathInfo['dirname'], $pathInfo['filename'], $index, $pathInfo['extension']))) {
+            while (file_exists($filename = \sprintf('%s/%s_%d.%s', $pathInfo['dirname'], $pathInfo['filename'], $index, $pathInfo['extension']))) {
                 ++$index;
             }
 
@@ -150,7 +150,7 @@ class FileUploadType extends AbstractType implements DataMapperInterface
             }
 
             if (!$isStreamWrapper && (!is_dir($value) || !is_writable($value))) {
-                throw new InvalidArgumentException(sprintf('Invalid upload directory "%s" it does not exist or is not writable.', $value));
+                throw new InvalidArgumentException(\sprintf('Invalid upload directory "%s" it does not exist or is not writable.', $value));
             }
 
             return $value;

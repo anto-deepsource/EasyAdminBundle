@@ -53,12 +53,12 @@ class MakeAdminDashboardCommand extends Command
 
         $projectDir = $this->projectDir;
         $controllerDir = $io->ask(
-            sprintf('In which directory of your project do you want to generate "%s"?', $controllerClassName),
+            \sprintf('In which directory of your project do you want to generate "%s"?', $controllerClassName),
             'src/Controller/Admin/',
             static function (string $selectedDir) use ($fs, $projectDir) {
                 $absoluteDir = u($selectedDir)->ensureStart($projectDir.\DIRECTORY_SEPARATOR);
                 if (null !== $absoluteDir->indexOf('..')) {
-                    throw new \RuntimeException(sprintf('The given directory path can\'t contain ".." and must be relative to the project directory (which is "%s")', $projectDir));
+                    throw new \RuntimeException(\sprintf('The given directory path can\'t contain ".." and must be relative to the project directory (which is "%s")', $projectDir));
                 }
 
                 $fs->mkdir($absoluteDir);
@@ -71,16 +71,16 @@ class MakeAdminDashboardCommand extends Command
             }
         );
 
-        $controllerFilePath = sprintf('%s/%s.php', u($controllerDir)->ensureStart($projectDir.\DIRECTORY_SEPARATOR), $controllerClassName);
+        $controllerFilePath = \sprintf('%s/%s.php', u($controllerDir)->ensureStart($projectDir.\DIRECTORY_SEPARATOR), $controllerClassName);
         if ($fs->exists($controllerFilePath)) {
-            throw new \RuntimeException(sprintf('The "%s.php" file already exists in the given "%s" directory. Use a different controller name or generate it in a different directory.', $controllerClassName, $controllerDir));
+            throw new \RuntimeException(\sprintf('The "%s.php" file already exists in the given "%s" directory. Use a different controller name or generate it in a different directory.', $controllerClassName, $controllerDir));
         }
 
         $guessedNamespace = u($controllerDir)->equalsTo('src')
             ? 'App'
             : u($controllerDir)->replace('/', ' ')->replace('\\', ' ')->replace('src ', 'app ')->title(true)->replace(' ', '\\')->trimEnd('\\');
 
-        $generatedFilePath = $this->classMaker->make(sprintf('%s/%s.php', $controllerDir, $controllerClassName), 'dashboard.tpl', [
+        $generatedFilePath = $this->classMaker->make(\sprintf('%s/%s.php', $controllerDir, $controllerClassName), 'dashboard.tpl', [
             'namespace' => $guessedNamespace,
             'site_title' => $this->getSiteTitle($this->projectDir),
         ]);
@@ -89,7 +89,7 @@ class MakeAdminDashboardCommand extends Command
         $io->success('Your dashboard class has been successfully generated.');
         $io->text('Next steps:');
         $io->listing([
-            sprintf('Configure your Dashboard at "%s"', $generatedFilePath),
+            \sprintf('Configure your Dashboard at "%s"', $generatedFilePath),
             'Run "make:admin:crud" to generate CRUD controllers and link them from the Dashboard.',
         ]);
 

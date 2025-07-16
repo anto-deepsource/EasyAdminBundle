@@ -34,7 +34,7 @@ final class FormConfigurator implements FieldConfiguratorInterface
                 // this empty string is "the name" used for XS size, when no real breakpoint is applied
                 $cssClasses = 'flex-fill';
             } else {
-                $cssClasses = sprintf('d-none d-%s-flex flex-%s-fill', $breakpointName, $breakpointName);
+                $cssClasses = \sprintf('d-none d-%s-flex flex-%s-fill', $breakpointName, $breakpointName);
             }
 
             $field->setFormTypeOption('row_attr.class', $field->getFormTypeOption('row_attr.class').' '.$cssClasses);

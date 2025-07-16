@@ -69,7 +69,7 @@ final class CrudMenuItem implements MenuItemInterface
                 'Argument "%s" for "%s" must be one of these types: %s. Passing type "%s" will cause an error in 5.0.0.',
                 '$entityId',
                 __METHOD__,
-                sprintf('"int", "string" or "%s"', AbstractUid::class),
+                \sprintf('"int", "string" or "%s"', AbstractUid::class),
                 \gettype($entityId)
             );
         }
@@ -90,11 +90,11 @@ final class CrudMenuItem implements MenuItemInterface
         $sortFieldsAndOrder = array_map('strtoupper', $sortFieldsAndOrder);
         foreach ($sortFieldsAndOrder as $sortField => $sortOrder) {
             if (!\in_array($sortOrder, [SortOrder::ASC, SortOrder::DESC], true)) {
-                throw new \InvalidArgumentException(sprintf('The sort order can be only "ASC" or "DESC", "%s" given.', $sortOrder));
+                throw new \InvalidArgumentException(\sprintf('The sort order can be only "ASC" or "DESC", "%s" given.', $sortOrder));
             }
 
             if (!\is_string($sortField)) {
-                throw new \InvalidArgumentException(sprintf('The keys of the array that defines the default sort must be strings with the field names, but the given "%s" value is a "%s".', $sortField, \gettype($sortField)));
+                throw new \InvalidArgumentException(\sprintf('The keys of the array that defines the default sort must be strings with the field names, but the given "%s" value is a "%s".', $sortField, \gettype($sortField)));
             }
         }
 

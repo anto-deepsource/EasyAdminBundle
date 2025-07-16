@@ -58,7 +58,7 @@ class MakeCrudControllerCommand extends Command
             $doctrineEntitiesFqcn
         );
         $entityClassName = u($entityFqcn)->afterLast('\\')->toString();
-        $controllerFileNamePattern = sprintf('%s{number}CrudController.php', $entityClassName);
+        $controllerFileNamePattern = \sprintf('%s{number}CrudController.php', $entityClassName);
 
         $projectDir = $this->projectDir;
         $controllerDir = $io->ask('Which directory do you want to generate the CRUD controller in?', 'src/Controller/Admin/', static function (string $selectedDir) use ($fs, $projectDir) {
@@ -80,7 +80,7 @@ class MakeCrudControllerCommand extends Command
         );
 
         $generatedFilePath = $this->classMaker->make(
-            sprintf('%s/%s', $controllerDir, $controllerFileNamePattern),
+            \sprintf('%s/%s', $controllerDir, $controllerFileNamePattern),
             'crud_controller.tpl',
             ['entity_fqcn' => $entityFqcn, 'entity_class_name' => $entityClassName, 'namespace' => $namespace]
         );
@@ -88,7 +88,7 @@ class MakeCrudControllerCommand extends Command
         $io->success('Your CRUD controller class has been successfully generated.');
         $io->text('Next steps:');
         $io->listing([
-            sprintf('Configure your controller at "%s"', $generatedFilePath),
+            \sprintf('Configure your controller at "%s"', $generatedFilePath),
             'Read EasyAdmin docs: https://symfony.com/doc/master/bundles/EasyAdminBundle/index.html',
         ]);
 

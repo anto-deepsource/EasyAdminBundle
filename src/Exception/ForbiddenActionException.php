@@ -19,7 +19,7 @@ final class ForbiddenActionException extends BaseException
 
         $exceptionContext = new ExceptionContext(
             'exception.forbidden_action',
-            sprintf('You don\'t have enough permissions to run the "%s" action on the "%s" or the "%s" action has been disabled.', $parameters['action'], $parameters['crud_controller'], $parameters['action']),
+            \sprintf('You don\'t have enough permissions to run the "%s" action on the "%s" or the "%s" action has been disabled.', $parameters['action'], $parameters['crud_controller'], $parameters['action']),
             $parameters,
             403
         );
