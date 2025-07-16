@@ -1,8 +1,9 @@
 version = 1
 
-exclude_patterns = [
-  "[!src/Dto/**]"
-]
+exclude_patterns = ["[!src/Dto/**]"]
 
 [[analyzers]]
 name = "php"
+
+[[transformers]]
+name = "php-cs-fixer"
