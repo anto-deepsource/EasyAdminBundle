@@ -14,7 +14,7 @@ class EscaperTest extends TestCase
     {
         $createdAlias = Escaper::escapeDqlAlias($entityName);
 
-        $this->assertSame($expectedAlias, $createdAlias, sprintf('The created DQL alias for "%s" does not match the expected alias "%s".', $createdAlias, $expectedAlias));
+        $this->assertSame($expectedAlias, $createdAlias, \sprintf('The created DQL alias for "%s" does not match the expected alias "%s".', $createdAlias, $expectedAlias));
     }
 
     public static function sqlAliasDataProvider(): iterable

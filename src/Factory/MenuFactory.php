@@ -131,7 +131,7 @@ final class MenuFactory implements MenuFactoryInterface
             $entityFqcn = $routeParameters[EA::ENTITY_FQCN] ?? null;
             $crudControllerFqcn = $routeParameters[EA::CRUD_CONTROLLER_FQCN] ?? null;
             if (null === $entityFqcn && null === $crudControllerFqcn) {
-                throw new \RuntimeException(sprintf('The CRUD menu item with label "%s" must define either the entity FQCN (using the third constructor argument) or the CRUD Controller FQCN (using the "setController()" method).', $menuItemDto->getLabel()));
+                throw new \RuntimeException(\sprintf('The CRUD menu item with label "%s" must define either the entity FQCN (using the third constructor argument) or the CRUD Controller FQCN (using the "setController()" method).', $menuItemDto->getLabel()));
             }
 
             // 1. if CRUD controller is defined, use it...
@@ -141,7 +141,7 @@ final class MenuFactory implements MenuFactoryInterface
             } else {
                 $crudControllers = $this->adminContextProvider->getContext()?->getCrudControllers();
                 if (null === $controllerFqcn = $crudControllers->findCrudFqcnByEntityFqcn($entityFqcn)) {
-                    throw new \RuntimeException(sprintf('Unable to find the controller related to the "%s" Entity; did you forget to extend "%s"?', $entityFqcn, AbstractCrudController::class));
+                    throw new \RuntimeException(\sprintf('Unable to find the controller related to the "%s" Entity; did you forget to extend "%s"?', $entityFqcn, AbstractCrudController::class));
                 }
 
                 $this->adminUrlGenerator->setController($controllerFqcn);

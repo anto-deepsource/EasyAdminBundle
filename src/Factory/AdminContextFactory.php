@@ -86,7 +86,7 @@ final class AdminContextFactory
         }
 
         if (null === $dashboardRouteName) {
-            throw new \RuntimeException(sprintf('The name of the route associated to "%s" cannot be determined. Clear the application cache to run the EasyAdmin cache warmer, which generates the needed data to find this route.', $dashboardController));
+            throw new \RuntimeException(\sprintf('The name of the route associated to "%s" cannot be determined. Clear the application cache to run the EasyAdmin cache warmer, which generates the needed data to find this route.', $dashboardController));
         }
 
         $dashboardDto = $dashboardControllerInstance->configureDashboard()->getAsDto();

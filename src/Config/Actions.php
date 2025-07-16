@@ -47,7 +47,7 @@ final class Actions
     public function update(string $pageName, string $actionName, callable $callable): self
     {
         if (null === $actionDto = $this->dto->getAction($pageName, $actionName)) {
-            throw new \InvalidArgumentException(sprintf('The "%s" action does not exist in the "%s" page, so you cannot update it. Instead, add the action with the "add()" method.', $actionName, $pageName));
+            throw new \InvalidArgumentException(\sprintf('The "%s" action does not exist in the "%s" page, so you cannot update it. Instead, add the action with the "add()" method.', $actionName, $pageName));
         }
 
         $action = $actionDto->getAsConfigObject();
@@ -61,7 +61,7 @@ final class Actions
     public function remove(string $pageName, string $actionName): self
     {
         if (null === $this->dto->getAction($pageName, $actionName)) {
-            throw new \InvalidArgumentException(sprintf('The "%s" action does not exist in the "%s" page, so you cannot remove it.', $actionName, $pageName));
+            throw new \InvalidArgumentException(\sprintf('The "%s" action does not exist in the "%s" page, so you cannot remove it.', $actionName, $pageName));
         }
 
         $this->dto->removeAction($pageName, $actionName);
@@ -81,7 +81,7 @@ final class Actions
         $currentActions = $this->dto->getActions();
         foreach ($orderedActionNames as $actionName) {
             if (!\array_key_exists($actionName, $currentActions[$pageName])) {
-                throw new \InvalidArgumentException(sprintf('The "%s" action does not exist in the "%s" page, so you cannot set its order.', $actionName, $pageName));
+                throw new \InvalidArgumentException(\sprintf('The "%s" action does not exist in the "%s" page, so you cannot set its order.', $actionName, $pageName));
             }
 
             $newActionOrder[] = $actionName;
@@ -217,7 +217,7 @@ final class Actions
                 ->linkToCrudAction(Action::NEW);
         }
 
-        throw new \InvalidArgumentException(sprintf('The "%s" action is not a built-in action, so you can\'t add or configure it via its name. Either refer to one of the built-in actions or create a custom action called "%s".', $actionName, $actionName));
+        throw new \InvalidArgumentException(\sprintf('The "%s" action is not a built-in action, so you can\'t add or configure it via its name. Either refer to one of the built-in actions or create a custom action called "%s".', $actionName, $actionName));
     }
 
     private function doAddAction(string $pageName, Action|string $actionNameOrObject, bool $isBatchAction = false): self
@@ -226,7 +226,7 @@ final class Actions
         $action = \is_string($actionNameOrObject) ? $this->createBuiltInAction($pageName, $actionNameOrObject) : $actionNameOrObject;
 
         if (null !== $this->dto->getAction($pageName, $actionName)) {
-            throw new \InvalidArgumentException(sprintf('The "%s" action already exists in the "%s" page, so you can\'t add it again. Instead, you can use the "updateAction()" method to update any options of an existing action.', $actionName, $pageName));
+            throw new \InvalidArgumentException(\sprintf('The "%s" action already exists in the "%s" page, so you can\'t add it again. Instead, you can use the "updateAction()" method to update any options of an existing action.', $actionName, $pageName));
         }
 
         $actionDto = $action->getAsDto();

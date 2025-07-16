@@ -32,12 +32,12 @@ final class CurrencyConfigurator implements FieldConfiguratorInterface
 
         $currencyName = $this->getCurrencyName($currencyCode);
         if (null === $currencyName) {
-            throw new \InvalidArgumentException(sprintf('The "%s" value used as the currency code of the "%s" field is not a valid ICU currency code.', $currencyCode, $field->getProperty()));
+            throw new \InvalidArgumentException(\sprintf('The "%s" value used as the currency code of the "%s" field is not a valid ICU currency code.', $currencyCode, $field->getProperty()));
         }
 
         $currencySymbol = $this->getCurrencySymbol($currencyCode);
         if (null === $currencySymbol) {
-            throw new \InvalidArgumentException(sprintf('The "%s" value used as the currency code of the "%s" field has no valid ICU currency symbol associated to it.', $currencyCode, $field->getProperty()));
+            throw new \InvalidArgumentException(\sprintf('The "%s" value used as the currency code of the "%s" field has no valid ICU currency symbol associated to it.', $currencyCode, $field->getProperty()));
         }
 
         $field->setFormattedValue([

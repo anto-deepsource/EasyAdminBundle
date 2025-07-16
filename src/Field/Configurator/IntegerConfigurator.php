@@ -33,7 +33,7 @@ final class IntegerConfigurator implements FieldConfiguratorInterface
             ?? null;
 
         $field->setFormattedValue(match (true) {
-            null !== $numberFormat => sprintf($numberFormat, $value),
+            null !== $numberFormat => \sprintf($numberFormat, $value),
             null !== $thousandsSeparator => number_format($value, 0, '.', $thousandsSeparator),
             default => $value,
         });

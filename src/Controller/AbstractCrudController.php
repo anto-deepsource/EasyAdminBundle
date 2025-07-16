@@ -559,7 +559,7 @@ abstract class AbstractCrudController extends AbstractController implements Crud
     {
         $field = $entityDto->getFields()->getByProperty($propertyName);
         if (null === $field || true === $field->getFormTypeOption('disabled')) {
-            throw new AccessDeniedException(sprintf('The field "%s" does not exist or it\'s configured as disabled, so it can\'t be modified.', $propertyName));
+            throw new AccessDeniedException(\sprintf('The field "%s" does not exist or it\'s configured as disabled, so it can\'t be modified.', $propertyName));
         }
 
         $this->container->get(EntityUpdater::class)->updateProperty($entityDto, $propertyName, $newValue);

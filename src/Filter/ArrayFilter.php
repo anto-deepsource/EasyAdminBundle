@@ -63,17 +63,17 @@ final class ArrayFilter implements FilterInterface
         $useQuotes = Types::SIMPLE_ARRAY === $fieldDto->getDoctrineMetadata()->get('type');
 
         if (null === $value || [] === $value) {
-            $queryBuilder->andWhere(sprintf('%s.%s %s', $alias, $property, $comparison));
+            $queryBuilder->andWhere(\sprintf('%s.%s %s', $alias, $property, $comparison));
         } else {
             $orX = new Orx();
             foreach ($value as $key => $item) {
                 // TODO: check this code because the loop variable is not used
-                $itemParameterName = sprintf('%s_%s', $parameterName, $key);
-                $orX->add(sprintf('%s.%s %s :%s', $alias, $property, $comparison, $itemParameterName));
+                $itemParameterName = \sprintf('%s_%s', $parameterName, $key);
+                $orX->add(\sprintf('%s.%s %s :%s', $alias, $property, $comparison, $itemParameterName));
                 $queryBuilder->setParameter($itemParameterName, $useQuotes ? '%"'.$item.'"%' : '%'.$item.'%');
             }
             if (ComparisonType::NOT_CONTAINS === $comparison) {
-                $orX->add(sprintf('%s.%s IS NULL', $alias, $property));
+                $orX->add(\sprintf('%s.%s IS NULL', $alias, $property));
             }
             $queryBuilder->andWhere($orX);
         }
