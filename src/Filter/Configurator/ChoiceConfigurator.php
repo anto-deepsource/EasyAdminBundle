@@ -24,7 +24,7 @@ final class ChoiceConfigurator implements FilterConfiguratorInterface
         $choices = $filterDto->getFormTypeOption('value_type_options.choices');
 
         if (null === $choices || 0 === \count($choices)) {
-            throw new \InvalidArgumentException(sprintf('The choice filter associated to the "%s" property does not define its choices. Define them with the setChoices() method.', $filterDto->getProperty()));
+            throw new \InvalidArgumentException(\sprintf('The choice filter associated to the "%s" property does not define its choices. Define them with the setChoices() method.', $filterDto->getProperty()));
         }
     }
 }

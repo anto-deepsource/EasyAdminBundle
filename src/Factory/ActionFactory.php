@@ -98,7 +98,7 @@ final class ActionFactory
             }
 
             if (Crud::PAGE_INDEX !== $currentPage && $actionDto->isBatchAction()) {
-                throw new \RuntimeException(sprintf('Batch actions can be added only to the "index" page, but the "%s" batch action is defined in the "%s" page.', $actionDto->getName(), $currentPage));
+                throw new \RuntimeException(\sprintf('Batch actions can be added only to the "index" page, but the "%s" batch action is defined in the "%s" page.', $actionDto->getName(), $currentPage));
             }
 
             // if CSS class hasn't been overridden, apply the default ones
@@ -146,7 +146,7 @@ final class ActionFactory
         $actionDto->setLinkUrl($this->generateActionUrl($adminContext->getRequest(), $actionDto, $entityDto));
 
         if (!$actionDto->isGlobalAction() && \in_array($pageName, [Crud::PAGE_EDIT, Crud::PAGE_NEW], true)) {
-            $actionDto->setHtmlAttribute('form', sprintf('%s-%s-form', $pageName, $entityDto->getName()));
+            $actionDto->setHtmlAttribute('form', \sprintf('%s-%s-form', $pageName, $entityDto->getName()));
         }
 
         if (Action::DELETE === $actionDto->getName()) {

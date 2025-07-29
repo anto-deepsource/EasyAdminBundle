@@ -143,11 +143,11 @@ trait FieldTrait
     public function setHtmlAttribute(string $attributeName, $attributeValue): self
     {
         if (str_contains($attributeName, '.')) {
-            throw new \InvalidArgumentException(sprintf('Field attributes must be defined as pairs of "(string) key => (scalar) value". That\'s why the attribute name ("%s") cannot use the "dot notation" with the "." character to create nested attributes.', $attributeName));
+            throw new \InvalidArgumentException(\sprintf('Field attributes must be defined as pairs of "(string) key => (scalar) value". That\'s why the attribute name ("%s") cannot use the "dot notation" with the "." character to create nested attributes.', $attributeName));
         }
 
         if (!\is_scalar($attributeValue)) {
-            throw new \InvalidArgumentException(sprintf('The value of the "%s" attribute must be a scalar value (string, integer, float, boolean); "%s" given.', $attributeName, \gettype($attributeValue)));
+            throw new \InvalidArgumentException(\sprintf('The value of the "%s" attribute must be a scalar value (string, integer, float, boolean); "%s" given.', $attributeName, \gettype($attributeValue)));
         }
 
         $this->dto->setFormTypeOption('attr.'.$attributeName, $attributeValue);
@@ -185,7 +185,7 @@ trait FieldTrait
     {
         $validOptions = [TextAlign::LEFT, TextAlign::CENTER, TextAlign::RIGHT];
         if (!\in_array($textAlign, $validOptions, true)) {
-            throw new \InvalidArgumentException(sprintf('The value of the "textAlign" option can only be one of these: "%s" ("%s" was given).', implode(',', $validOptions), $textAlign));
+            throw new \InvalidArgumentException(\sprintf('The value of the "textAlign" option can only be one of these: "%s" ("%s" was given).', implode(',', $validOptions), $textAlign));
         }
 
         $this->dto->setTextAlign($textAlign);

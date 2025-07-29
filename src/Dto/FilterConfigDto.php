@@ -29,7 +29,7 @@ final class FilterConfigDto
                 'Argument "%s" for "%s" must be one of these types: %s. Passing type "%s" will cause an error in 5.0.0.',
                 '$filterNameOrConfig',
                 __METHOD__,
-                sprintf('"string" or "%s"', FilterInterface::class),
+                \sprintf('"string" or "%s"', FilterInterface::class),
                 \gettype($filterNameOrConfig)
             );
         }

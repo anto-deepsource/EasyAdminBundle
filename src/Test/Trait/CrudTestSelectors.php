@@ -11,12 +11,12 @@ trait CrudTestSelectors
 
     protected function getIndexEntityRowSelector(string|int $entityId): string
     {
-        return sprintf('tbody tr[data-id="%s"]', (string) $entityId);
+        return \sprintf('tbody tr[data-id="%s"]', (string) $entityId);
     }
 
     protected function getActionSelector(string $action): string
     {
-        return sprintf('.action-%s', $action);
+        return \sprintf('.action-%s', $action);
     }
 
     protected function getGlobalActionSelector(string $action): string
@@ -39,10 +39,10 @@ trait CrudTestSelectors
         $columnSelector = match ($type) {
             'header' => 'th',
             'data' => 'td',
-            default => 'th'
+            default => 'th',
         };
 
-        return sprintf('%s[data-column="%s"]', $columnSelector, $columnName);
+        return \sprintf('%s[data-column="%s"]', $columnSelector, $columnName);
     }
 
     protected function getEntityFormSelector(): string
@@ -59,16 +59,16 @@ trait CrudTestSelectors
 
     protected function getFormFieldIdValue(string $fieldName): string
     {
-        return sprintf('%s_%s', $this->getFormEntity(), $fieldName);
+        return \sprintf('%s_%s', $this->getFormEntity(), $fieldName);
     }
 
     protected function getFormFieldSelector(string $fieldName): string
     {
-        return sprintf('%s #%s', $this->getEntityFormSelector(), $this->getFormFieldIdValue($fieldName));
+        return \sprintf('%s #%s', $this->getEntityFormSelector(), $this->getFormFieldIdValue($fieldName));
     }
 
     protected function getFormFieldLabelSelector(string $fieldName): string
     {
-        return sprintf('%s label[for="%s"]', $this->getEntityFormSelector(), $this->getFormFieldIdValue($fieldName));
+        return \sprintf('%s label[for="%s"]', $this->getEntityFormSelector(), $this->getFormFieldIdValue($fieldName));
     }
 }

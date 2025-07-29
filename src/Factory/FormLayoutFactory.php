@@ -51,7 +51,7 @@ final class FormLayoutFactory
         foreach ($fields as $fieldDto) {
             if ($fieldDto->isFormTab()) {
                 if (null !== $firstRegularField) {
-                    throw new \InvalidArgumentException(sprintf('When using form tabs, all fields must be rendered inside a tab. However, your field "%s" does not belong to any tab. Move it under a form tab or create a new form tab before it.', $firstRegularField->getProperty()));
+                    throw new \InvalidArgumentException(\sprintf('When using form tabs, all fields must be rendered inside a tab. However, your field "%s" does not belong to any tab. Move it under a form tab or create a new form tab before it.', $firstRegularField->getProperty()));
                 }
 
                 // everything is fine; there are no regular fields before the first tab
@@ -78,7 +78,7 @@ final class FormLayoutFactory
             }
 
             if ($theFirstFieldWhichIsATabOrColumn->isFormColumn() && $fieldDto->isFormTab()) {
-                throw new \InvalidArgumentException(sprintf('When using form columns, you can\'t define tabs inside columns (but you can define columns inside tabs). Move the tab "%s" outside any column.', $fieldDto->getLabel()));
+                throw new \InvalidArgumentException(\sprintf('When using form columns, you can\'t define tabs inside columns (but you can define columns inside tabs). Move the tab "%s" outside any column.', $fieldDto->getLabel()));
             }
         }
     }
@@ -175,12 +175,12 @@ final class FormLayoutFactory
         /** @var FieldDto $fieldDto */
         foreach ($fields as $fieldDto) {
             if ($formUsesColumns && !($aFormColumnIsOpen || $aFormTabIsOpen) && !$fieldDto->isFormLayoutField()) {
-                throw new \InvalidArgumentException(sprintf('When using form columns, all fields must be rendered inside a column. However, your field "%s" does not belong to any column. Move it under a form column or create a new form column before it.', $fieldDto->getProperty()));
+                throw new \InvalidArgumentException(\sprintf('When using form columns, all fields must be rendered inside a column. However, your field "%s" does not belong to any column. Move it under a form column or create a new form column before it.', $fieldDto->getProperty()));
             }
 
             if ($fieldDto->isFormTab()) {
                 $isTabActive = 0 === \count($tabs);
-                $tabId = sprintf('tab-%s', $fieldDto->getLabel() ? $slugger->slug(strip_tags($fieldDto->getLabel()))->lower()->toString() : ++$tabsWithoutLabelCounter);
+                $tabId = \sprintf('tab-%s', $fieldDto->getLabel() ? $slugger->slug(strip_tags($fieldDto->getLabel()))->lower()->toString() : ++$tabsWithoutLabelCounter);
                 $fieldDto->setCustomOption(FormField::OPTION_TAB_ID, $tabId);
                 $fieldDto->setCustomOption(FormField::OPTION_TAB_IS_ACTIVE, $isTabActive);
 
@@ -280,7 +280,7 @@ final class FormLayoutFactory
 
     private function createColumnGroupOpenField(bool $formUsesTabs): FieldDto
     {
-        return Field::new(sprintf('ea_form_column_group_open_%s', Ulid::generate()))
+        return Field::new(\sprintf('ea_form_column_group_open_%s', Ulid::generate()))
             ->setFormType(EaFormColumnGroupOpenType::class)
             ->setFormTypeOptions(['mapped' => false, 'required' => false, 'ea_is_inside_tab' => $formUsesTabs])
             ->getAsDto();
@@ -288,7 +288,7 @@ final class FormLayoutFactory
 
     private function createColumnGroupCloseField(bool $formUsesTabs): FieldDto
     {
-        return Field::new(sprintf('ea_form_column_group_close_%s', Ulid::generate()))
+        return Field::new(\sprintf('ea_form_column_group_close_%s', Ulid::generate()))
             ->setFormType(EaFormColumnGroupCloseType::class)
             ->setFormTypeOptions(['mapped' => false, 'required' => false, 'ea_is_inside_tab' => $formUsesTabs])
             ->getAsDto();
@@ -296,7 +296,7 @@ final class FormLayoutFactory
 
     private function createColumnCloseField(): FieldDto
     {
-        return Field::new(sprintf('ea_form_column_close_%s', Ulid::generate()))
+        return Field::new(\sprintf('ea_form_column_close_%s', Ulid::generate()))
             ->setFormType(EaFormColumnCloseType::class)
             ->setFormTypeOptions(['mapped' => false, 'required' => false])
             ->getAsDto();
@@ -309,7 +309,7 @@ final class FormLayoutFactory
 
     private function createFieldsetCloseField(): FieldDto
     {
-        return Field::new(sprintf('ea_form_fieldset_close_%s', Ulid::generate()))
+        return Field::new(\sprintf('ea_form_fieldset_close_%s', Ulid::generate()))
             ->setFormType(EaFormFieldsetCloseType::class)
             ->setFormTypeOptions(['mapped' => false, 'required' => false])
             ->getAsDto();
@@ -317,7 +317,7 @@ final class FormLayoutFactory
 
     private function createTabPaneGroupOpenField(): FieldDto
     {
-        return Field::new(sprintf('ea_form_tabpane_group_open_%s', Ulid::generate()))
+        return Field::new(\sprintf('ea_form_tabpane_group_open_%s', Ulid::generate()))
             ->setFormType(EaFormTabPaneGroupOpenType::class)
             ->setFormTypeOptions(['mapped' => false, 'required' => false])
             ->getAsDto();
@@ -325,7 +325,7 @@ final class FormLayoutFactory
 
     private function createTabPaneGroupCloseField(): FieldDto
     {
-        return Field::new(sprintf('ea_form_tabpane_group_close_%s', Ulid::generate()))
+        return Field::new(\sprintf('ea_form_tabpane_group_close_%s', Ulid::generate()))
             ->setFormType(EaFormTabPaneGroupCloseType::class)
             ->setFormTypeOptions(['mapped' => false, 'required' => false])
             ->getAsDto();
@@ -333,7 +333,7 @@ final class FormLayoutFactory
 
     private function createTabListField(array $tabs): FieldDto
     {
-        return Field::new(sprintf('ea_form_tablist_%s', Ulid::generate()))
+        return Field::new(\sprintf('ea_form_tablist_%s', Ulid::generate()))
             ->setFormType(EaFormTabListType::class)
             ->setFormTypeOptions(['mapped' => false, 'required' => false])
             ->setCustomOption('tabs', $tabs)
@@ -342,7 +342,7 @@ final class FormLayoutFactory
 
     private function createTabPaneCloseField(): FieldDto
     {
-        return Field::new(sprintf('ea_form_tabpane_close_%s', Ulid::generate()))
+        return Field::new(\sprintf('ea_form_tabpane_close_%s', Ulid::generate()))
             ->setFormType(EaFormTabPaneCloseType::class)
             ->setFormTypeOptions(['mapped' => false, 'required' => false])
             ->getAsDto();

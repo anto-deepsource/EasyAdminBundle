@@ -12,7 +12,7 @@ final class MissingClassMethodException extends \Exception
         $message = 'The class should implement the following methods :';
 
         foreach ($methodsName as $key => $methodName) {
-            $message .= sprintf(' %s', $methodName);
+            $message .= \sprintf(' %s', $methodName);
             if ($key !== array_key_last($methodsName)) {
                 $message .= ' and';
             }

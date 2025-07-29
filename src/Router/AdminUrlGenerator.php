@@ -277,7 +277,7 @@ final class AdminUrlGenerator implements AdminUrlGeneratorInterface
         // the current route (this is needed to allow generating links to different dashboards)
         if (null !== $dashboardControllerFqcn = $this->get(EA::DASHBOARD_CONTROLLER_FQCN)) {
             if (null === $dashboardRoute = $this->dashboardControllerRegistry->getRouteByControllerFqcn($dashboardControllerFqcn)) {
-                throw new \InvalidArgumentException(sprintf('The given "%s" class is not a valid Dashboard controller. Make sure it extends from "%s" or implements "%s".', $dashboardControllerFqcn, AbstractDashboardController::class, DashboardControllerInterface::class));
+                throw new \InvalidArgumentException(\sprintf('The given "%s" class is not a valid Dashboard controller. Make sure it extends from "%s" or implements "%s".', $dashboardControllerFqcn, AbstractDashboardController::class, DashboardControllerInterface::class));
             }
 
             $this->dashboardRoute = $dashboardRoute;
@@ -324,14 +324,14 @@ final class AdminUrlGenerator implements AdminUrlGeneratorInterface
         }
 
         if (\is_resource($paramValue)) {
-            throw new \InvalidArgumentException(sprintf('The value of the "%s" parameter is a PHP resource, which is not supported as a route parameter.', $paramName));
+            throw new \InvalidArgumentException(\sprintf('The value of the "%s" parameter is a PHP resource, which is not supported as a route parameter.', $paramName));
         }
 
         if (\is_object($paramValue)) {
             if (method_exists($paramValue, '__toString')) {
                 $paramValue = (string) $paramValue;
             } else {
-                throw new \InvalidArgumentException(sprintf('The object passed as the value of the "%s" parameter must implement the "__toString()" method to allow using its value as a route parameter.', $paramName));
+                throw new \InvalidArgumentException(\sprintf('The object passed as the value of the "%s" parameter must implement the "__toString()" method to allow using its value as a route parameter.', $paramName));
             }
         }
 
@@ -352,7 +352,7 @@ final class AdminUrlGenerator implements AdminUrlGeneratorInterface
             $this->dashboardRoute = $adminContext->getDashboardRouteName();
             $currentRouteParameters = $routeParametersForReferrer = $adminContext->getRequest()->query->all();
             unset($routeParametersForReferrer[EA::REFERRER]);
-            $this->currentPageReferrer = sprintf('%s%s?%s', $adminContext->getRequest()->getBaseUrl(), $adminContext->getRequest()->getPathInfo(), http_build_query($routeParametersForReferrer));
+            $this->currentPageReferrer = \sprintf('%s%s?%s', $adminContext->getRequest()->getBaseUrl(), $adminContext->getRequest()->getPathInfo(), http_build_query($routeParametersForReferrer));
         }
 
         $this->includeReferrer = null;

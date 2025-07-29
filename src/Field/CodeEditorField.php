@@ -53,7 +53,7 @@ final class CodeEditorField implements FieldInterface
     public function setLanguage(string $language): self
     {
         if (!\in_array($language, self::ALLOWED_LANGUAGES, true)) {
-            throw new \InvalidArgumentException(sprintf('The "%s" language is not available for code highlighting (allowed languages: %s).', __METHOD__, implode(', ', self::ALLOWED_LANGUAGES)));
+            throw new \InvalidArgumentException(\sprintf('The "%s" language is not available for code highlighting (allowed languages: %s).', __METHOD__, implode(', ', self::ALLOWED_LANGUAGES)));
         }
 
         $this->setCustomOption(self::OPTION_LANGUAGE, $language);
@@ -64,7 +64,7 @@ final class CodeEditorField implements FieldInterface
     public function setNumOfRows(int $rows): self
     {
         if ($rows < 1) {
-            throw new \InvalidArgumentException(sprintf('The argument of the "%s()" method must be 1 or higher (%d given).', __METHOD__, $rows));
+            throw new \InvalidArgumentException(\sprintf('The argument of the "%s()" method must be 1 or higher (%d given).', __METHOD__, $rows));
         }
 
         $this->setCustomOption(self::OPTION_NUM_OF_ROWS, $rows);
@@ -75,7 +75,7 @@ final class CodeEditorField implements FieldInterface
     public function setTabSize(int $tabSize): self
     {
         if ($tabSize < 1) {
-            throw new \InvalidArgumentException(sprintf('The argument of the "%s()" method must be 1 or higher (%d given).', __METHOD__, $tabSize));
+            throw new \InvalidArgumentException(\sprintf('The argument of the "%s()" method must be 1 or higher (%d given).', __METHOD__, $tabSize));
         }
 
         $this->setCustomOption(self::OPTION_TAB_SIZE, $tabSize);

@@ -83,7 +83,7 @@ final class FormField implements FieldInterface
 
         $validBreakpointNames = ['', 'sm', 'md', 'lg', 'xl', 'xxl'];
         if (!\in_array($breakpointName, $validBreakpointNames, true)) {
-            throw new \InvalidArgumentException(sprintf('The value passed to the "addRow()" method of "FormField" can only be one of these values: "%s" ("%s" was given).', implode(', ', $validBreakpointNames), $breakpointName));
+            throw new \InvalidArgumentException(\sprintf('The value passed to the "addRow()" method of "FormField" can only be one of these values: "%s" ("%s" was given).', implode(', ', $validBreakpointNames), $breakpointName));
         }
 
         return $field
@@ -135,7 +135,7 @@ final class FormField implements FieldInterface
             ->setProperty('ea_form_column_'.(new Ulid()))
             ->setLabel($label)
             ->setFormType(EaFormColumnOpenType::class)
-            ->addCssClass(sprintf('field-form_column %s', \is_int($cols) ? 'col-md-'.$cols : $cols))
+            ->addCssClass(\sprintf('field-form_column %s', \is_int($cols) ? 'col-md-'.$cols : $cols))
             ->setFormTypeOptions(['mapped' => false, 'required' => false])
             ->setCustomOption(self::OPTION_ICON, $icon)
             ->setValue(true);
@@ -152,7 +152,7 @@ final class FormField implements FieldInterface
     public function collapsible(bool $collapsible = true): self
     {
         if (!$this->hasLabelOrIcon()) {
-            throw new \InvalidArgumentException(sprintf('The %s() method used in one of your fieldsets requires that the fieldset defines either a label or an icon, but it defines none of them.', __METHOD__));
+            throw new \InvalidArgumentException(\sprintf('The %s() method used in one of your fieldsets requires that the fieldset defines either a label or an icon, but it defines none of them.', __METHOD__));
         }
 
         $this->setCustomOption(self::OPTION_COLLAPSIBLE, $collapsible);
@@ -163,7 +163,7 @@ final class FormField implements FieldInterface
     public function renderCollapsed(bool $collapsed = true): self
     {
         if (!$this->hasLabelOrIcon()) {
-            throw new \InvalidArgumentException(sprintf('The %s() method used in one of your fieldsets requires that the fieldset defines either a label or an icon, but it defines none of them.', __METHOD__));
+            throw new \InvalidArgumentException(\sprintf('The %s() method used in one of your fieldsets requires that the fieldset defines either a label or an icon, but it defines none of them.', __METHOD__));
         }
 
         $this->setCustomOption(self::OPTION_COLLAPSIBLE, true);
@@ -188,7 +188,7 @@ final class FormField implements FieldInterface
         if (!str_contains($icon, 'fa-') && !str_contains($icon, 'far-') && !str_contains($icon, 'fab-')) {
             trigger_deprecation('easycorp/easyadmin-bundle', '4.4.0', 'The value passed as the $icon argument in "%s" method must be the full FontAwesome CSS class of the icon. For example, if you passed "user" before, you now must pass "fa fa-user" (or any style variant like "fa fa-solid fa-user").', $methodName);
 
-            $icon = sprintf('fa fa-%s', $icon);
+            $icon = \sprintf('fa fa-%s', $icon);
         }
 
         return $icon;

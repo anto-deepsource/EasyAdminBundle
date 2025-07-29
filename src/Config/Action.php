@@ -57,7 +57,7 @@ final class Action
                 'Argument "%s" for "%s" must be one of these types: %s. Passing type "%s" will cause an error in 5.0.0.',
                 '$label',
                 __METHOD__,
-                sprintf('"%s", "string", "false" or "null"', TranslatableInterface::class),
+                \sprintf('"%s", "string", "false" or "null"', TranslatableInterface::class),
                 \gettype($label)
             );
         }
@@ -230,11 +230,11 @@ final class Action
     public function getAsDto(): ActionDto
     {
         if (null === $this->dto->getLabel() && null === $this->dto->getIcon()) {
-            throw new \InvalidArgumentException(sprintf('The label and icon of an action cannot be null at the same time. Either set the label, the icon or both for the "%s" action.', $this->dto->getName()));
+            throw new \InvalidArgumentException(\sprintf('The label and icon of an action cannot be null at the same time. Either set the label, the icon or both for the "%s" action.', $this->dto->getName()));
         }
 
         if (null === $this->dto->getCrudActionName() && null === $this->dto->getRouteName() && null === $this->dto->getUrl()) {
-            throw new \InvalidArgumentException(sprintf('Actions must link to either a route, a CRUD action, or a URL. Set the "linkToCrudAction()", "linkToRoute()", or "linkToUrl()" method for the "%s" action.', $this->dto->getName()));
+            throw new \InvalidArgumentException(\sprintf('Actions must link to either a route, a CRUD action, or a URL. Set the "linkToCrudAction()", "linkToRoute()", or "linkToUrl()" method for the "%s" action.', $this->dto->getName()));
         }
 
         return $this->dto;
