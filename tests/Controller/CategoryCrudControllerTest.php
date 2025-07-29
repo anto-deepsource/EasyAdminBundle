@@ -214,16 +214,16 @@ class CategoryCrudControllerTest extends AbstractCrudTestCase
         static::assertIsBool($active);
 
         // Adapt the toggle URL, so it will change the category's active property to the opposite of what it is currently
-        $firstFoundToggleUrl .= sprintf('&newValue=%s', false === $active ? 'true' : 'false');
+        $firstFoundToggleUrl .= \sprintf('&newValue=%s', false === $active ? 'true' : 'false');
 
         // Change the CSRF token
         if (null !== $invalidCsrfToken) {
-            $firstFoundToggleUrl = preg_replace('/csrfToken=.+?&/', sprintf('csrfToken=%s&', $invalidCsrfToken), $firstFoundToggleUrl);
+            $firstFoundToggleUrl = preg_replace('/csrfToken=.+?&/', \sprintf('csrfToken=%s&', $invalidCsrfToken), $firstFoundToggleUrl);
         }
 
         // Change the field name
         if (null !== $fieldName) {
-            $firstFoundToggleUrl = preg_replace('/fieldName=.+?&/', sprintf('fieldName=%s&', $fieldName), $firstFoundToggleUrl);
+            $firstFoundToggleUrl = preg_replace('/fieldName=.+?&/', \sprintf('fieldName=%s&', $fieldName), $firstFoundToggleUrl);
         }
 
         // Do the AJAX request
@@ -422,7 +422,7 @@ class CategoryCrudControllerTest extends AbstractCrudTestCase
                 return 'admin';
         }
 
-        throw new \InvalidArgumentException(sprintf('Unknown role, use one of: %s', implode(', ', ['ROLE_USER', 'ROLE_ADMIN'])));
+        throw new \InvalidArgumentException(\sprintf('Unknown role, use one of: %s', implode(', ', ['ROLE_USER', 'ROLE_ADMIN'])));
     }
 
     private function getParameterFromUrlQueryString(string $url, string $parameterName): string|array|null

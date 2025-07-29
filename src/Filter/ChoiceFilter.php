@@ -68,12 +68,12 @@ final class ChoiceFilter implements FilterInterface
         $isMultiple = $filterDataDto->getFormTypeOption('value_type_options.multiple');
 
         if (null === $value || ($isMultiple && 0 === \count($value))) {
-            $queryBuilder->andWhere(sprintf('%s.%s %s', $alias, $property, $comparison));
+            $queryBuilder->andWhere(\sprintf('%s.%s %s', $alias, $property, $comparison));
         } else {
             $orX = new Orx();
-            $orX->add(sprintf('%s.%s %s (:%s)', $alias, $property, $comparison, $parameterName));
+            $orX->add(\sprintf('%s.%s %s (:%s)', $alias, $property, $comparison, $parameterName));
             if (ComparisonType::NEQ === $comparison || 'NOT IN' === $comparison) {
-                $orX->add(sprintf('%s.%s IS NULL', $alias, $property));
+                $orX->add(\sprintf('%s.%s IS NULL', $alias, $property));
             }
             $queryBuilder->andWhere($orX)
                 ->setParameter($parameterName, $value);

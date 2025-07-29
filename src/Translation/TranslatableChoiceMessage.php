@@ -18,7 +18,7 @@ final class TranslatableChoiceMessage implements TranslatableInterface
      */
     public function __construct(
         private TranslatableInterface $message,
-        private ?string $cssClass
+        private ?string $cssClass,
     ) {
     }
 
@@ -27,7 +27,7 @@ final class TranslatableChoiceMessage implements TranslatableInterface
         $message = $this->message->trans($translator, $locale);
 
         if (null !== $this->cssClass) {
-            return sprintf('<span class="%s">%s</span>', $this->cssClass, $message);
+            return \sprintf('<span class="%s">%s</span>', $this->cssClass, $message);
         }
 
         return $message;
@@ -36,7 +36,7 @@ final class TranslatableChoiceMessage implements TranslatableInterface
     public function __toString(): string
     {
         if (null !== $this->cssClass) {
-            return sprintf('<span class="%s">%s</span>', $this->cssClass, $this->message);
+            return \sprintf('<span class="%s">%s</span>', $this->cssClass, $this->message);
         }
 
         return (string) $this->message;

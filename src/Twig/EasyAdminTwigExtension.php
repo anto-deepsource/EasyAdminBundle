@@ -82,7 +82,7 @@ class EasyAdminTwigExtension extends AbstractExtension implements GlobalsInterfa
         $flattenedArray = [];
 
         foreach ($array as $flattenedKey => $value) {
-            $flattenedKey = null !== $parentKey ? sprintf('%s[%s]', $parentKey, $flattenedKey) : $flattenedKey;
+            $flattenedKey = null !== $parentKey ? \sprintf('%s[%s]', $parentKey, $flattenedKey) : $flattenedKey;
 
             if (\is_array($value)) {
                 $flattenedArray = array_merge($flattenedArray, $this->flattenArray($value, $flattenedKey));
@@ -127,13 +127,13 @@ class EasyAdminTwigExtension extends AbstractExtension implements GlobalsInterfa
         if (\is_array($callback) && 2 === \count($callback)) {
             $callback = [$environment->getRuntime(array_shift($callback)), array_pop($callback)];
             if (!\is_callable($callback)) {
-                throw new RuntimeError(sprintf('Unable to load runtime for filter: "%s"', $filterName));
+                throw new RuntimeError(\sprintf('Unable to load runtime for filter: "%s"', $filterName));
             }
 
             return \call_user_func($callback, $value, ...$filterArguments);
         }
 
-        throw new RuntimeError(sprintf('Invalid callback for filter: "%s"', $filterName));
+        throw new RuntimeError(\sprintf('Invalid callback for filter: "%s"', $filterName));
     }
 
     public function representAsString($value): string
@@ -155,7 +155,7 @@ class EasyAdminTwigExtension extends AbstractExtension implements GlobalsInterfa
         }
 
         if (\is_array($value)) {
-            return sprintf('Array (%d items)', \count($value));
+            return \sprintf('Array (%d items)', \count($value));
         }
 
         if (\is_object($value)) {
@@ -168,10 +168,10 @@ class EasyAdminTwigExtension extends AbstractExtension implements GlobalsInterfa
             }
 
             if (method_exists($value, 'getId')) {
-                return sprintf('%s #%s', $value::class, $value->getId());
+                return \sprintf('%s #%s', $value::class, $value->getId());
             }
 
-            return sprintf('%s #%s', $value::class, substr(md5(spl_object_hash($value)), 0, 7));
+            return \sprintf('%s #%s', $value::class, substr(md5(spl_object_hash($value)), 0, 7));
         }
 
         return '';

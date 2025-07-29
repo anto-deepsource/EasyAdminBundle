@@ -27,7 +27,7 @@ final class Assets
     public function addWebpackEncoreEntry(Asset|string $entryNameOrAsset): self
     {
         if (!class_exists('Symfony\\WebpackEncoreBundle\\WebpackEncoreBundle')) {
-            throw new \RuntimeException(sprintf('You are trying to add a Webpack Encore entry called "%s" but WebpackEncoreBundle is not installed in your project. Try running "composer require symfony/webpack-encore-bundle"', $entryNameOrAsset));
+            throw new \RuntimeException(\sprintf('You are trying to add a Webpack Encore entry called "%s" but WebpackEncoreBundle is not installed in your project. Try running "composer require symfony/webpack-encore-bundle"', $entryNameOrAsset));
         }
 
         if (\is_string($entryNameOrAsset)) {
@@ -44,7 +44,7 @@ final class Assets
         if (!class_exists('Symfony\\Component\\AssetMapper\\AssetMapper')) {
             $names = array_map(static fn (Asset|string $nameOrAsset) => \is_string($nameOrAsset) ? '"'.$nameOrAsset.'"' : '"'.$nameOrAsset->getAsDto()->getValue().'"', $entryNameOrAsset);
 
-            throw new \RuntimeException(sprintf('You are trying to add '.(1 === \count($names) ? 'an AssetMapper entry called %s' : ' some AssetMapper entries (%s)').' but the AssetMapper component is not installed in your project. Try running "composer require symfony/asset-mapper"', implode(', ', $names)));
+            throw new \RuntimeException(\sprintf('You are trying to add '.(1 === \count($names) ? 'an AssetMapper entry called %s' : ' some AssetMapper entries (%s)').' but the AssetMapper component is not installed in your project. Try running "composer require symfony/asset-mapper"', implode(', ', $names)));
         }
 
         foreach ($entryNameOrAsset as $nameOrAsset) {
