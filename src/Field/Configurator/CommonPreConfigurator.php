@@ -175,7 +175,7 @@ final class CommonPreConfigurator implements FieldConfiguratorInterface
         }
 
         if (null === $templateName = $field->getTemplateName()) {
-            throw new \RuntimeException(sprintf('Fields must define either their templateName or their templatePath. None given for "%s" field.', $field->getProperty()));
+            throw new \RuntimeException(\sprintf('Fields must define either their templateName or their templatePath. None given for "%s" field.', $field->getProperty()));
         }
 
         return $adminContext->getTemplatePath($templateName);

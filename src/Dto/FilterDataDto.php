@@ -63,11 +63,11 @@ final class FilterDataDto
 
     public function getParameterName(): string
     {
-        return sprintf('%s_%d', str_replace('.', '_', $this->getProperty()), $this->index);
+        return \sprintf('%s_%d', str_replace('.', '_', $this->getProperty()), $this->index);
     }
 
     public function getParameter2Name(): string
     {
-        return sprintf('%s_%d', str_replace('.', '_', $this->getProperty()), $this->index + 1);
+        return \sprintf('%s_%d', str_replace('.', '_', $this->getProperty()), $this->index + 1);
     }
 }

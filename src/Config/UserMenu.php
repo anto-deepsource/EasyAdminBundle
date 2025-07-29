@@ -55,7 +55,7 @@ final class UserMenu
     public function setGravatarEmail(string $emailAddress): self
     {
         $hash = md5(strtolower(trim($emailAddress)));
-        $this->dto->setAvatarUrl(sprintf('https://www.gravatar.com/avatar/%s', $hash));
+        $this->dto->setAvatarUrl(\sprintf('https://www.gravatar.com/avatar/%s', $hash));
 
         return $this;
     }

@@ -63,7 +63,7 @@ abstract class FilterTypeTest extends TypeTestCase
             }
 
             if ($namesAreDifferent || $valuesAreDifferent || $typesAreDifferent) {
-                throw new AssertionFailedError(sprintf('The "%s" and "%s" Doctrine parameters are not the same.', $expectedParam->getName(), $actualParam->getName()));
+                throw new AssertionFailedError(\sprintf('The "%s" and "%s" Doctrine parameters are not the same.', $expectedParam->getName(), $actualParam->getName()));
             }
         }
     }

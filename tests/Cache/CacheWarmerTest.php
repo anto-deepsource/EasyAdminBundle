@@ -20,7 +20,7 @@ class CacheWarmerTest extends TestCase
     {
         parent::setUp();
 
-        $this->cacheDirectory = sprintf('%s/cache_dir_%d/', sys_get_temp_dir(), random_int(1, 999999));
+        $this->cacheDirectory = \sprintf('%s/cache_dir_%d/', sys_get_temp_dir(), random_int(1, 999999));
         $this->dashboardRoutesCacheFile = $this->cacheDirectory.CacheWarmer::DASHBOARD_ROUTES_CACHE;
     }
 
