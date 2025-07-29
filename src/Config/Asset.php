@@ -67,7 +67,7 @@ final class Asset
     public function preload(bool $preload = true): self
     {
         if (!class_exists('Symfony\\Component\\WebLink\\Link')) {
-            throw new \RuntimeException(sprintf('You are trying to preload an asset called "%s" but WebLink component is not installed in your project. Try running "composer require symfony/web-link"', $this->dto->getValue()));
+            throw new \RuntimeException(\sprintf('You are trying to preload an asset called "%s" but WebLink component is not installed in your project. Try running "composer require symfony/web-link"', $this->dto->getValue()));
         }
 
         $this->dto->setPreload($preload);
@@ -78,7 +78,7 @@ final class Asset
     public function nopush(bool $nopush = true): self
     {
         if (!class_exists('Symfony\\Component\\WebLink\\Link')) {
-            throw new \RuntimeException(sprintf('You are trying to configure the "nopush" preload attribute of an asset called "%s" but WebLink component is not installed in your project. Try running "composer require symfony/web-link"', $this->dto->getValue()));
+            throw new \RuntimeException(\sprintf('You are trying to configure the "nopush" preload attribute of an asset called "%s" but WebLink component is not installed in your project. Try running "composer require symfony/web-link"', $this->dto->getValue()));
         }
 
         $this->dto->setNopush($nopush);

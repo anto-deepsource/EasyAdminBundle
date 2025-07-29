@@ -30,7 +30,7 @@ final class BooleanFilter implements FilterInterface
     public function apply(QueryBuilder $queryBuilder, FilterDataDto $filterDataDto, ?FieldDto $fieldDto, EntityDto $entityDto): void
     {
         $queryBuilder
-            ->andWhere(sprintf('%s.%s %s :%s', $filterDataDto->getEntityAlias(), $filterDataDto->getProperty(), $filterDataDto->getComparison(), $filterDataDto->getParameterName()))
+            ->andWhere(\sprintf('%s.%s %s :%s', $filterDataDto->getEntityAlias(), $filterDataDto->getProperty(), $filterDataDto->getComparison(), $filterDataDto->getParameterName()))
             ->setParameter($filterDataDto->getParameterName(), $filterDataDto->getValue());
     }
 }

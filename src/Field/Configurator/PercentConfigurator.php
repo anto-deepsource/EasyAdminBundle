@@ -35,6 +35,6 @@ final class PercentConfigurator implements FieldConfiguratorInterface
         }
 
         $value = $field->getValue();
-        $field->setFormattedValue(sprintf('%s%s', $isStoredAsFractional ? 100 * $value : $value, $symbol));
+        $field->setFormattedValue(\sprintf('%s%s', $isStoredAsFractional ? 100 * $value : $value, $symbol));
     }
 }

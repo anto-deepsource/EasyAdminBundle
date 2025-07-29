@@ -54,7 +54,7 @@ final class ControllerFactory
         $controllerCallable = $this->controllerResolver->getController($newRequest);
 
         if (false === $controllerCallable) {
-            throw new NotFoundHttpException(sprintf('Unable to find the controller "%s::%s".', $controllerFqcn, $controllerAction));
+            throw new NotFoundHttpException(\sprintf('Unable to find the controller "%s::%s".', $controllerFqcn, $controllerAction));
         }
 
         if (!\is_array($controllerCallable)) {

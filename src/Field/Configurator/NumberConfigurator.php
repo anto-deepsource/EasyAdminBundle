@@ -50,7 +50,7 @@ final class NumberConfigurator implements FieldConfiguratorInterface
             ?? null;
 
         if (null !== $numberFormat) {
-            $field->setFormattedValue(sprintf($numberFormat, $value));
+            $field->setFormattedValue(\sprintf($numberFormat, $value));
 
             return;
         }

@@ -38,7 +38,7 @@ final class LocaleConfigurator implements FieldConfiguratorInterface
 
         $localeName = $this->getLocaleName($localeCode);
         if (null === $localeName) {
-            throw new \InvalidArgumentException(sprintf('The "%s" value used as the locale code of the "%s" field is not a valid ICU locale code.', $localeCode, $field->getProperty()));
+            throw new \InvalidArgumentException(\sprintf('The "%s" value used as the locale code of the "%s" field is not a valid ICU locale code.', $localeCode, $field->getProperty()));
         }
 
         $field->setFormattedValue($localeName);

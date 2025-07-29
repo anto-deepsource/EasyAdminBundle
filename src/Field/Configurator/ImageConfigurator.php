@@ -49,7 +49,7 @@ final class ImageConfigurator implements FieldConfiguratorInterface
 
         $relativeUploadDir = $field->getCustomOption(ImageField::OPTION_UPLOAD_DIR);
         if (null === $relativeUploadDir) {
-            throw new \InvalidArgumentException(sprintf('The "%s" image field must define the directory where the images are uploaded using the setUploadDir() method.', $field->getProperty()));
+            throw new \InvalidArgumentException(\sprintf('The "%s" image field must define the directory where the images are uploaded using the setUploadDir() method.', $field->getProperty()));
         }
         $relativeUploadDir = u($relativeUploadDir)->trimStart(\DIRECTORY_SEPARATOR)->ensureEnd(\DIRECTORY_SEPARATOR)->toString();
         $isStreamWrapper = filter_var($relativeUploadDir, \FILTER_VALIDATE_URL);

@@ -54,26 +54,26 @@ final class EntityFilter implements FilterInterface
             // the 'ea_' prefix is needed to avoid errors when using reserved words as assocAlias ('order', 'group', etc.)
             // see https://github.com/EasyCorp/EasyAdminBundle/pull/4344
             $assocAlias = 'ea_'.$filterDataDto->getParameterName();
-            $queryBuilder->leftJoin(sprintf('%s.%s', $alias, $property), $assocAlias);
+            $queryBuilder->leftJoin(\sprintf('%s.%s', $alias, $property), $assocAlias);
 
             if (0 === \count($value)) {
-                $queryBuilder->andWhere(sprintf('%s %s', $assocAlias, $comparison));
+                $queryBuilder->andWhere(\sprintf('%s %s', $assocAlias, $comparison));
             } else {
                 $orX = new Orx();
-                $orX->add(sprintf('%s %s (:%s)', $assocAlias, $comparison, $parameterName));
+                $orX->add(\sprintf('%s %s (:%s)', $assocAlias, $comparison, $parameterName));
                 if ('NOT IN' === $comparison) {
-                    $orX->add(sprintf('%s IS NULL', $assocAlias));
+                    $orX->add(\sprintf('%s IS NULL', $assocAlias));
                 }
                 $queryBuilder->andWhere($orX)
                     ->setParameter($parameterName, $this->processParameterValue($queryBuilder, $value));
             }
         } elseif (null === $value || ($isMultiple && 0 === \count($value))) {
-            $queryBuilder->andWhere(sprintf('%s.%s %s', $alias, $property, $comparison));
+            $queryBuilder->andWhere(\sprintf('%s.%s %s', $alias, $property, $comparison));
         } else {
             $orX = new Orx();
-            $orX->add(sprintf('%s.%s %s (:%s)', $alias, $property, $comparison, $parameterName));
+            $orX->add(\sprintf('%s.%s %s (:%s)', $alias, $property, $comparison, $parameterName));
             if (ComparisonType::NEQ === $comparison) {
-                $orX->add(sprintf('%s.%s IS NULL', $alias, $property));
+                $orX->add(\sprintf('%s.%s IS NULL', $alias, $property));
             }
             $queryBuilder->andWhere($orX)
                 ->setParameter($parameterName, $this->processParameterValue($queryBuilder, $value));
@@ -126,7 +126,7 @@ final class EntityFilter implements FilterInterface
         try {
             $identifierType = $classMetadata->getTypeOfField($classMetadata->getSingleIdentifierFieldName());
         } catch (MappingException) {
-            throw new \RuntimeException(sprintf('The EntityFilter does not support entities with a composite primary key or entities without an identifier. Please check your entity "%s".', $parameterValue::class));
+            throw new \RuntimeException(\sprintf('The EntityFilter does not support entities with a composite primary key or entities without an identifier. Please check your entity "%s".', $parameterValue::class));
         }
 
         $identifierValue = $entityManager->getUnitOfWork()->getSingleIdentifierValue($parameterValue);

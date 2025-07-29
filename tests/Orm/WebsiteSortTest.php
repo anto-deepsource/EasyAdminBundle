@@ -65,8 +65,8 @@ class WebsiteSortTest extends AbstractCrudTestCase
         foreach ($expectedAmountMapping as $expectedName => $expectedValue) {
             $expectedRow = $index++;
 
-            $this->assertSelectorTextSame('tbody tr:nth-child('.$expectedRow.') td:nth-child(2)', $expectedName, sprintf('Expected "%s" in row %d', $expectedName, $expectedRow));
-            $this->assertSelectorTextSame('tbody tr:nth-child('.$expectedRow.') td:nth-child(3)', $expectedValue, sprintf('Expected "%s" in row %d', $expectedValue, $expectedRow));
+            $this->assertSelectorTextSame('tbody tr:nth-child('.$expectedRow.') td:nth-child(2)', $expectedName, \sprintf('Expected "%s" in row %d', $expectedName, $expectedRow));
+            $this->assertSelectorTextSame('tbody tr:nth-child('.$expectedRow.') td:nth-child(3)', $expectedValue, \sprintf('Expected "%s" in row %d', $expectedValue, $expectedRow));
         }
     }
 
