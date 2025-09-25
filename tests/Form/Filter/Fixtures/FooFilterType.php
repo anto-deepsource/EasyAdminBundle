@@ -6,7 +6,7 @@ use Doctrine\ORM\QueryBuilder;
 use EasyCorp\Bundle\EasyAdminBundle\Form\Filter\Type\FilterType;
 use Symfony\Component\Form\FormInterface;
 
-class FooFilterType extends FilterType
+class FooFilterType extends FilterType // hello
 {
     public function filter(QueryBuilder $queryBuilder, FormInterface $form, array $metadata)
     {
