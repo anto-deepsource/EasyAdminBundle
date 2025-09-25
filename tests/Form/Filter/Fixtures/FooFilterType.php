@@ -26,4 +26,3 @@ class FooFilterType12 extends FilterType12
     {
     }
 }
-
