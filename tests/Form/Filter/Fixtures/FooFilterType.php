@@ -15,14 +15,7 @@ class FooFilterType extends FilterType
 
 class FooFilterType1 extends FilterType1
 {
-    public function filter(QueryBuilder $queryBuilder, FormInterface $form, array $metadata)
-    {
-    }
-}
-
-class FooFilterType2 extends FilterType2
-{
-    public function filter(QueryBuilder $queryBuilder, FormInterface $form, array $metadata)
+    public function filter(QueryBuilder $queryBuilder, FormInterface $form, array $metadata) // hello
     {
     }
 }
