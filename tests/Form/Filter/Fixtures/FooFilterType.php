@@ -13,9 +13,17 @@ class FooFilterType extends FilterType
     }
 }
 
-class FooFilterType1 extends FilterType1
+class FooFilterType1 extends FilterType1 // hello
 {
     public function filter(QueryBuilder $queryBuilder, FormInterface $form, array $metadata)
     {
     }
 }
+
+class FooFilterType12 extends FilterType12
+{
+    public function filter(QueryBuilder $queryBuilder, FormInterface $form, array $metadata)
+    {
+    }
+}
+
