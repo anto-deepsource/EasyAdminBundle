@@ -8,14 +8,14 @@ use Symfony\Component\Form\FormInterface;
 
 class FooFilterType extends FilterType
 {
-    public function filter(QueryBuilder $queryBuilder, FormInterface $form, array $metadata) // hello
+    public function filter(QueryBuilder $queryBuilder, FormInterface $form, array $metadata)
     {
     }
 }
 
 class FooFilterType1 extends FilterType1
 {
-    public function filter(QueryBuilder $queryBuilder, FormInterface $form, array $metadata) // hello
+    public function filter(QueryBuilder $queryBuilder, FormInterface $form, array $metadata)
     {
     }
 }
